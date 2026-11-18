@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101329">
+  <title>EMOJI-REBUS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a href="#" class="logo">🧩 EMOJI-REBUS</a>
+  <div class="top-stats">
+    <span>⭐ <b id="topScore">0</b></span>
+    <span>🏆 <b id="topRecord">0</b></span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <span class="tag">🧠 MIYANGNI SINAB KO‘R!</span>
+      <h1>Emojilar ortidagi<br><span>sirli so‘zni top!</span></h1>
+      <p>Emojilarni kuzat, mantiqiy fikrla va rebus javobini top. Har bir to‘g‘ri javob seni g‘alabaga yaqinlashtiradi!</p>
+      <button class="primary-btn" id="startBtn">🚀 O‘yinni boshlash</button>
+    </div>
+    <div class="hero-emoji">
+      <div class="hero-orbit"></div>
+      <span>🧩</span>
+      <i>💡</i><b>⭐</b><small>🎯</small>
+    </div>
+  </section>
+
+  <section class="stats-grid">
+    <article class="stat-card">
+      <span>⭐</span><p>Jami ball</p><h2 id="score">0</h2>
+    </article>
+    <article class="stat-card">
+      <span>🏆</span><p>Rekord</p><h2 id="record">0</h2>
+    </article>
+    <article class="stat-card">
+      <span>✅</span><p>To‘g‘ri javob</p><h2 id="correctCount">0</h2>
+    </article>
+    <article class="stat-card">
+      <span>📊</span><p>Natija</p><h2 id="accuracy">0%</h2>
+    </article>
+  </section>
+
+  <section class="game-layout" id="gameSection">
+    <div class="game-panel">
+      <div class="game-heading">
+        <div>
+          <span class="eyebrow">REBUS TOPSHIRIG‘I</span>
+          <h2>🧩 So‘zni top!</h2>
+        </div>
+        <span class="level-badge" id="levelBadge">OSON</span>
+      </div>
+
+      <div class="difficulty">
+        <button class="difficulty-btn active" data-level="easy">🟢 Oson</button>
+        <button class="difficulty-btn" data-level="medium">🟡 O‘rta</button>
+        <button class="difficulty-btn" data-level="hard">🔴 Qiyin</button>
+      </div>
+
+      <div class="question-info">
+        <span id="questionNumber">Savol 1 / 36</span>
+        <span>⏱️ <b id="timer">45</b> soniya</span>
+      </div>
+
+      <div class="timer-track"><div id="timerBar"></div></div>
+
+      <div class="rebus-card">
+        <div class="question-label">BU EMOJILAR QANDAY SO‘ZNI ANGLATADI?</div>
+        <div class="emoji-display" id="emojiDisplay">🌞 + 🌻</div>
+        <div class="question-mark">❓</div>
+      </div>
+
+      <div class="answer-area">
+        <label for="answerInput">Javobingni yoz:</label>
+        <input id="answerInput" type="text" maxlength="45" placeholder="Javobni shu yerga yoz..." autocomplete="off">
+        <div class="action-buttons">
+          <button class="primary-btn" id="checkBtn">✓ Tekshirish</button>
+          <button class="hint-btn" id="hintBtn">💡 Yordam</button>
+        </div>
+        <p class="feedback" id="feedback">Omad! Javobingni kutyapmiz.</p>
+      </div>
+
+      <div class="game-bottom">
+        <button class="secondary-btn" id="nextBtn" disabled>Keyingi savol ➜</button>
+        <button class="restart-btn" id="restartBtn">↻ Qayta boshlash</button>
+      </div>
+    </div>
+
+    <aside class="side-panel">
+      <div class="info-card">
+        <span class="eyebrow">O‘YIN HOLATI</span>
+        <h3>🎮 Jarayon</h3>
+        <div class="side-row"><span>Joriy savol</span><b id="sideQuestion">1</b></div>
+        <div class="side-row"><span>Ball</span><b id="sideScore">0 ⭐</b></div>
+        <div class="side-row"><span>Qiyinlik</span><b id="sideLevel">Oson</b></div>
+        <div class="side-row"><span>Yordamlar</span><b id="hintsUsed">0</b></div>
+      </div>
+
+      <div class="info-card">
+        <span class="eyebrow">KUNLIK VAZIFALAR</span>
+        <h3>📋 Topshiriqlar</h3>
+        <div class="mission">
+          <span>3 ta savolni yech</span>
+          <b id="mission1">0/3</b>
+        </div>
+        <div class="mission-track"><div id="missionBar1"></div></div>
+        <div class="mission">
+          <span>5 ta to‘g‘ri javob ber</span>
+          <b id="mission2">0/5</b>
+        </div>
+        <div class="mission-track"><div id="missionBar2"></div></div>
+        <div class="mission">
+          <span>20 ball yig‘</span>
+          <b id="mission3">0/20</b>
+        </div>
+        <div class="mission-track"><div id="missionBar3"></div></div>
+      </div>
+
+      <div class="info-card">
+        <span class="eyebrow">MUKOFOTLAR</span>
+        <h3>🎁 Yutuqlar</h3>
+        <div class="achievement" id="rewardFirst">🔒 Birinchi g‘alaba</div>
+        <div class="achievement" id="rewardFive">🔒 5 ta to‘g‘ri javob</div>
+        <div class="achievement" id="rewardTen">🔒 10 ta to‘g‘ri javob</div>
+        <div class="achievement" id="rewardPerfect">🔒 100 ball yig‘ish</div>
+      </div>
+
+      <div class="info-card sound-card">
+        <div>
+          <h3>🔊 Ovoz</h3>
+          <p>Ovoz effektlarini boshqarish</p>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="soundToggle" checked>
+          <span></span>
+        </label>
+      </div>
+    </aside>
+  </section>
+
+  <section class="panel statistics">
+    <span class="eyebrow">O‘YIN NATIJALARI</span>
+    <h2>📊 Statistikang</h2>
+    <div class="stats-details">
+      <div><span>🧩</span><p>Yechilgan savollar</p><b id="statSolved">0</b></div>
+      <div><span>🎯</span><p>To‘g‘ri javoblar</p><b id="statCorrect">0</b></div>
+      <div><span>💡</span><p>Ishlatilgan yordam</p><b id="statHints">0</b></div>
+    </div>
+  </section>
+
+  <footer>🧩 EMOJI-REBUS <span>©</span> <b>Ulug'bek Ro'ziboev</b></footer>
+</main>
+
+<div class="modal" id="resultModal">
+  <div class="modal-box">
+    <div class="modal-icon">🏆</div>
+    <h2 id="resultTitle">Ajoyib!</h2>
+    <p id="resultText">Natijang tayyor!</p>
+    <button class="primary-btn" id="modalRestart">🔄 Yana o‘ynash</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
